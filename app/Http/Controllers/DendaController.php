@@ -12,18 +12,24 @@ class DendaController extends Controller
 {
     public function index()
     {
-        return view('pages.index');
+        $data = Denda::orderBy('created_at', 'DESC')->paginate(10);
+
+        return view('pages.index', ['data' => $data]);
     }
 
     public function add(DendaRequest $request)
     {
         $data = $request->all();
-        // $data['date'] = Carbon::toDateTimeString();
 
         Denda::create($data);
 
         $request->session()->flash('success', 'Data berhasil ditambahkan!');
         return redirect()->route('denda.index');
+    }
+
+    public function update(DendaRequest $request)
+    {
+        
     }
 
 }

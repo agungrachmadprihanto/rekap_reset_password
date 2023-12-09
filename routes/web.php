@@ -31,4 +31,5 @@ Route::prefix('denda')
 {
     Route::get('/',[DendaController::class, 'index'])->name('denda.index');
     Route::post('/add',[DendaController::class, 'add'])->name('denda.add');
+    Route::put('/update', [DendaController::class, 'update'])->name('denda.update');
 });
