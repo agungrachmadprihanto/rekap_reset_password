@@ -25,42 +25,26 @@
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/sdm/calon-kary.html" class="nav-link">
+            <a href="{{ route('denda.index') }}" class="nav-link">
               <i class="nav-icon fas fa-user-tie"></i>
               <p>
-                Calon Karyawan
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/sdm/paket-soal.html" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
-              <p>
-                Paket Soal              
+                Add Denda CBS
               </p>
             </a>
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-th"></i>
+              <i class="nav-icon fas fa-tasks"></i>
               <p>
-                Soal              
+                List Karyawan               
               </p>
             </a>
           </li>
           <li class="nav-item">
-            <a href="pages/sdm/jadwal-ujian.html" class="nav-link">
-              <i class="nav-icon fas fa-clock"></i>
-              <p>
-                Jadwal Ujian              
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="pages/sdm/hasil-ujian.html" class="nav-link">
+            <a href="#" class="nav-link">
               <i class="nav-icon fas fa-table"></i>
               <p>
-                Hasil Ujian              
+                Laporan All Denda            
               </p>
             </a>
           </li>

@@ -12,7 +12,11 @@
  
       <!-- Notifications Dropdown Menu -->   
       <li class="nav-item">
-        <button class="btn btn-danger">Logout</button>
+        <form action="{{ route('logout') }}" method="POST">
+          @csrf
+          <button type="submit" class="btn btn-danger">Logout</button>
+        </form>
+        {{-- <button class="btn btn-danger"></button> --}}
       </li>
     </ul>
   </nav>

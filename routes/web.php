@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\DashboardCrontroller;
+use App\Http\Controllers\DendaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -23,3 +24,11 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/dashboard', [DashboardCrontroller::class,'index'])->name('index');
+
+Route::prefix('denda')
+->middleware(['auth'])
+->group(function ()
+{
+    Route::get('/',[DendaController::class, 'index'])->name('denda.index');
+    Route::post('/add',[DendaController::class, 'add'])->name('denda.add');
+});
