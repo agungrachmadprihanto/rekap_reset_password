@@ -42,4 +42,5 @@ Route::prefix('rekap')
 ->group(function ()
 {
     Route::get('/', [RekapController::class,'index'])->name('rekap.index');
+    Route::post('update/{id}', [RekapController::class,'update'])->name('rekap.update');
 });

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\DataTables\DendaDataTable;
+use App\Http\Requests\BayarRequest;
 use App\Models\Denda;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables;
@@ -11,24 +12,21 @@ class RekapController extends Controller
 {
     public function index()
     {
-        if(\request()->ajax()){
-            $data = Denda::latest()->get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                    $actionBtn = '<a href="javascript:void(0)" class="edit btn btn-success btn-sm">Edit</a> <a href="javascript:void(0)" class="delete btn btn-danger btn-sm">Delete</a>';
-                    return $actionBtn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        $data = Denda::orderBy('created_at', 'DESC')->get();
 
-        return view('pages.rekap.index');
+        return view('pages.rekap.index', ['data' => $data]);
     }
 
-    public function dataTable()
+    public function update(Request $request, $id)
     {
+        $data = new Denda;
+        $data->bayar = $request->bayar;
+        $data->save();
+        
 
+        // Denda::findOrFail($id)->update($data);
+
+        return redirect()->route('rekap.index');
     }
 
 }

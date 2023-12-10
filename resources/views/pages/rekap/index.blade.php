@@ -1,64 +1,108 @@
 @extends('dashboard')
-@section('title','Dashboard')
-@section('slug','Dashboard')
-
+@section('title','Rekap Data')
+@section('slug','Rekap Data')
 @section('content')
 <section class="content">
-    <div class="container-fluid">
-      <div class="row">        
-        <div class="col-md-12">
-          <div class="card card-danger">
-            <div class="card-header">
-              <h3 class="card-title">10 Data Karywan Terbaru Yang Terkena Denda</h3>                 
-              {{-- <div class="card-tools">
-                <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                  <i class="fas fa-minus"></i>
-                </button> --}}
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-12">
+        <div class="card">
+          <div class="card-header">
+            <h3 class="card-title">Rekap Data Karyawan Reset Password</h3>
+            <div class="card-tools">
+              <div class="input-group input-group-sm" style="width: 150px;">
+                <input type="text" name="table_search" class="form-control float-right" placeholder="Search">    
+                <div class="input-group-append">
+                  <button type="submit" class="btn btn-default">
+                    <i class="fas fa-search"></i>
+                  </button>
+                </div>
               </div>
             </div>
-            <div class="card-body">
- 
-                <table id="rekap" class="table table-striped">
-                    <thead>
-                        <th scope="col">#</th>
-                        <th scope="col">Name</th>
-                        <th scope="col">User ID</th>
-                        <th scope="col">Denda</th>
-                        <th scope="col">Alasan</th>
-                    </thead>
-                </table>
-                
-            </div>
-            <!-- /.card-body -->
           </div>
-          <!-- /.card -->
-        </div>
+          <!-- /.card-header -->
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                  <thead>
+                    <tr>
+                      <th>No</th>
+                      <th>Tanggal</th>
+                      <th>Nama</th>
+                      <th>User ID</th>
+                      <th>Cabang</th>
+                      <th>Denda</th>
+                      <th>Alasan</th>
+                      <th>Status Denda ?</th>
+                      <th>Action</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    @php
+                      $no = 1;
+                    @endphp
+                    @foreach ($data as $item)
+                    <tr>
+                      <td>{{ $no++ }}</td>
+                      <td>{{ $item->date }}</td>
+                      <td>{{ $item->name }}</td>
+                      <td>{{ $item->user_id }}</td>
+                      <td>{{ $item->cabang }}</td>
+                      <td>{{ $item->denda }}</td>
+                      <td>{{ $item->alasan }}</td>
+                      @if ($item->bayar === 0)
+                      <td><span class="tag tag-success" style="color: red">Belum Lunas</span></td>                        
+                      @else
+                      <td><span class="tag tag-success" style="color: green">Sudah Lunas</span></td>
+                      @endif
+                      <td>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit{{ $item->id }}">Ubah Status Pembayaran</button>
+                      </td>
+                    </tr>                        
+                    @endforeach
+                  </tbody>
+                </table>
+              </div>
       </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </section>
+      <!-- /.col -->
+    </div>
+    <!-- /.row -->
+  </div>
+  <!-- /.container-fluid -->
+
+{{-- Modaall --}}
+@foreach ($data as $item)
+  <div class="modal fade" id="edit{{ $item->id }}" aria-hidden="true">
+  <div class="modal-dialog">
+      <div class="modal-content">
+
+          <div class="modal-header">
+              <h4 class="modal-title" id="modelHeading">Ubah Status Pembayaran Denda</h4>
+          </div>
+          <div class="modal-body">
+              <form action="{{ route('rekap.update', ['id' => $item->id]) }}" method="POST" class="form-horizontal">
+                  @method('post')
+                  @csrf
+                  <div class="form-group">
+                    <label for="name" class="col-sm-12 control-label">Pilih Pembayaran</label>
+                    <div class="col-sm-12">
+                      <select name="bayar" class="form-control custom-select">
+                        <option selected disabled>Select one</option>
+                        <option value="1">Sudah Lunas</option>
+                        <option value="0">Belum Lunas</option>
+                    </select>
+                    </div>
+                  </div>
+                  <div class="col-sm-offset-2 col-sm-10">
+                   <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+                   </button>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+</div>
+@endforeach
+
+</section>
 
 @endsection
-@push('scripts')
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>  
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.0/jquery.validate.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/jquery.dataTables.min.js"></script>
-<script src="https://cdn.datatables.net/1.10.21/js/dataTables.bootstrap4.min.js"></script>
-<script type="text/javascript">
-    $(function () {
-          var table = $('#rekap').DataTable({
-              processing: true,
-              serverSide: true,
-              ajax: "{{ route('rekap.index') }}",
-              columns: [
-                  {data: 'name', name: 'name'},
-                  {data: 'user_id', name: 'user_id'},
-                  {data: 'denda', name: 'denda'},
-                  {data: 'alasan', name: 'alasan'},
-              ]
-          });
-        });
-</script>
-
-@endpush
