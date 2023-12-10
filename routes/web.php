@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\DashboardCrontroller;
 use App\Http\Controllers\DendaController;
+use App\Http\Controllers\RekapController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -31,5 +32,14 @@ Route::prefix('denda')
 {
     Route::get('/',[DendaController::class, 'index'])->name('denda.index');
     Route::post('/add',[DendaController::class, 'add'])->name('denda.add');
-    Route::put('/update', [DendaController::class, 'update'])->name('denda.update');
+    Route::get('/edit/{id}',[DendaController::class, 'edit'])->name('denda.edit');
+    Route::put('/update/{id}', [DendaController::class, 'update'])->name('denda.update');
+    Route::delete('/delete/{id}', [DendaController::class,'delete'])->name('denda.delete');
+});
+
+Route::prefix('rekap')
+->middleware(['auth'])
+->group(function ()
+{
+    Route::get('/', [RekapController::class,'index'])->name('rekap.index');
 });

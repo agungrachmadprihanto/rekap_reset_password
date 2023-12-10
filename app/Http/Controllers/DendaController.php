@@ -14,7 +14,7 @@ class DendaController extends Controller
     {
         $data = Denda::orderBy('created_at', 'DESC')->paginate(10);
 
-        return view('pages.index', ['data' => $data]);
+        return view('pages.denda.index', ['data' => $data]);
     }
 
     public function add(DendaRequest $request)
@@ -27,9 +27,28 @@ class DendaController extends Controller
         return redirect()->route('denda.index');
     }
 
-    public function update(DendaRequest $request)
+    public function edit($id)
+    {
+        $data = Denda::findOrFail($id);
+
+        return view('pages.denda.edit', ['data' => $data]);
+    }
+
+    public function update(DendaRequest $request, $id)
     {
         
+        $data = $request->all();
+    
+        Denda::findOrFail($id)->update($data);
+
+        return redirect()->route('denda.index');        
+    }
+
+    public function delete($id)
+    {
+        Denda::findOrFail($id)->delete();
+
+        return redirect()->route('denda.index');
     }
 
 }

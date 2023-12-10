@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('cabang');
             $table->string('denda');
             $table->string('alasan');
-            $table->string('keterangan');
+            $table->string('keterangan')->nullable();
             $table->softDeletes();
             $table->timestamps();
         });

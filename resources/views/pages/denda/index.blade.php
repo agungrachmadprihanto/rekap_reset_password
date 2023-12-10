@@ -114,7 +114,7 @@
               </div>
             </div>
             <div class="card-body">
-              <table class="table table-striped">
+              <table class="table table-hover">
                 <thead>
                   <tr>
                     <th scope="col">#</th>
@@ -139,10 +139,14 @@
                     <td>{{ $item->denda }}</td>
                     <td>{{ $item->date }}</td>
                     <td>
-                      <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#edit">
-                        Edit
-                      </button>
-                      <a href="" class="btn btn-danger">Delete</a>
+                      <a href="{{ route('denda.edit', ['id' => $item->id]) }}" class="btn btn-outline-primary"><i class="fas fa-edit"></i></a>
+                      <form action="{{ route('denda.delete', ['id' => $item->id]) }}" method="POST" class="d-inline">
+                        @csrf
+                        @method('delete')
+                        <button type="submit" class="btn btn-outline-danger">
+                          <i class="fas fa-trash-alt"></i>
+                        </button>                      
+                      </form>
                     </td>
                   </tr>
                 </tbody>
@@ -165,90 +169,6 @@
     </div><!-- /.container-fluid -->
   </section>
 
-
-
-  <!-- Modal -->
-<div class="modal fade" id="edit" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-  <div class="modal-dialog modal-lg" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="editModalLabel">Modal title</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form action="">
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label>Date:</label>
-                <div class="input-group date" name="date" id="reservationdatee" data-target-input="nearest">
-                    <input type="text" name="date" class="form-control datetimepicker-input" data-target="#reservationdatee"/>
-                    <div class="input-group-append" data-target="#reservationdatee" data-toggle="datetimepicker">
-                        <div class="input-group-text"><i class="fa fa-calendar"></i></div>
-                    </div>
-                </div>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="cabang">Cabang</label>
-              <select id="cabang" name="cabang" class="form-control custom-select">
-                  <option selected disabled>Select one</option>
-                  <option value="001">001</option>
-                  <option value="002">002</option>
-                  <option value="003">003</option>
-                  <option value="004">004</option>
-                  <option value="005">005</option>
-                  <option value="006">006</option>
-                  <option value="007">007</option>
-                  <option value="008">008</option>
-                </select>
-          </div>          
-          </div> 
-          <div class="row">
-            <div class="form-group col-md-6">
-              <label for="inputName">Nama</label>
-              <input type="text" name="name" class="form-control" placeholder="UDIN" style="text-transform: uppercase">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="">User ID</label>
-                <input type="text" name="user_id" class="form-control" placeholder="MAA007LG01" style="text-transform: uppercase">
-            </div>
-
- 
-          </div>                     
-          <div class="row">
-            <div class="form-group col-md-6">
-                <label for="inputName">Alasan Terblokir</label>
-                <select id="alasan" name="alasan" class="form-control custom-select">
-                    <option selected disabled>Select one</option>
-                    <option value="Lupa Password">Lupa Password</option>
-                    <option value="Password Kadaluarsa">Password Kadaluarsa</option>
-                    <option value="Salah Input Password 3x">Salah Input Password 3x</option>
-                    <option value="Lainnya">Lainnya</option>
-                  </select>
-            </div>
-            <div class="form-group col-md-6">
-              <label for="">Denda</label>
-              <select id="denda" name="denda" class="form-control custom-select">
-                  <option selected disabled>Select one</option>
-                  <option value="Ya">Ya</option>
-                  <option value="Tidak">Tidak</option>
-              </select>
-          </div>      
-          </div>
-          <div class="form-group">
-            <label for="inputName">Keterangan</label>
-            <textarea name="keterangan" id="keterangan" cols="5" rows="5" class="form-control"></textarea>
-        </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div>
 
 
 @endsection
