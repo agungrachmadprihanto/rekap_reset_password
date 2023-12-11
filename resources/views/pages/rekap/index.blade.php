@@ -9,15 +9,20 @@
         <div class="card">
           <div class="card-header">
             <h3 class="card-title">Rekap Data Karyawan Reset Password</h3>
+            <br>
+            <a href="{{ route('rekap.export') }}" class="btn btn-danger">download rekap</a>
             <div class="card-tools">
+              <form action="{{ route('rekap.cari') }}" method="GET">
               <div class="input-group input-group-sm" style="width: 150px;">
                 <input type="text" name="table_search" class="form-control float-right" placeholder="Search">    
                 <div class="input-group-append">
                   <button type="submit" class="btn btn-default">
                     <i class="fas fa-search"></i>
                   </button>
+                    <a href="{{ route('rekap.index') }}" class="btn btn-danger"><i class="fas fa-times"></i></a>
                 </div>
               </div>
+              </form>
             </div>
           </div>
           <!-- /.card-header -->
@@ -49,7 +54,7 @@
                       <td>{{ $item->cabang }}</td>
                       <td>{{ $item->denda }}</td>
                       <td>{{ $item->alasan }}</td>
-                      @if ($item->bayar === 0)
+                      @if ($item->bayar === 'belum')
                       <td><span class="tag tag-success" style="color: red">Belum Lunas</span></td>                        
                       @else
                       <td><span class="tag tag-success" style="color: green">Sudah Lunas</span></td>
@@ -61,6 +66,10 @@
                     @endforeach
                   </tbody>
                 </table>
+                {{-- {{ $data->links() }} --}}
+              </div>
+              <div class="card-footer clearfix">
+                {{ $data->links('vendor.pagination.bootstrap-4') }}
               </div>
       </div>
       <!-- /.col -->
@@ -87,13 +96,13 @@
                     <div class="col-sm-12">
                       <select name="bayar" class="form-control custom-select">
                         <option selected disabled>Select one</option>
-                        <option value="1">Sudah Lunas</option>
-                        <option value="0">Belum Lunas</option>
+                        <option value="lunas">Sudah Lunas</option>
+                        <option value="belum">Belum Lunas</option>
                     </select>
                     </div>
                   </div>
                   <div class="col-sm-offset-2 col-sm-10">
-                   <button type="submit" class="btn btn-primary" id="saveBtn" value="create">Save changes
+                   <button type="submit" class="btn btn-primary">Save changes
                    </button>
                   </div>
               </form>

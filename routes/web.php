@@ -16,15 +16,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// })->middleware('auth');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard', [DashboardCrontroller::class,'index'])->name('index');
+Route::get('/', [DashboardCrontroller::class,'index'])->name('home')->middleware('auth');
+Route::get('/pending', [DashboardCrontroller::class,'pending'])->name('pending')->middleware('auth');
+Route::get('/lunas', [DashboardCrontroller::class,'lunas'])->name('lunas')->middleware('auth');
 
 Route::prefix('denda')
 ->middleware(['auth'])
@@ -42,5 +44,7 @@ Route::prefix('rekap')
 ->group(function ()
 {
     Route::get('/', [RekapController::class,'index'])->name('rekap.index');
+    Route::get('/search', [RekapController::class, 'cari'])->name('rekap.cari');
     Route::post('update/{id}', [RekapController::class,'update'])->name('rekap.update');
+    Route::get('/export',[RekapController::class,'export'])->name('rekap.export');
 });
