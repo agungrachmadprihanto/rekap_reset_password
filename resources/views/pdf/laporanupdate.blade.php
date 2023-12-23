@@ -32,8 +32,6 @@
         table.minimalistBlack tbody td {
             font-size: 15px;
         }
-        table.minimalistBlack thead {
-        }
         table.minimalistBlack thead th {
             font-size: 15px;
             font-weight: bold;
@@ -75,7 +73,7 @@
             <tbody>
             <tr>
                 <td>Tanggal</td>
-                <td>: 11-12-2023</td>
+                <td>: {{ $data->date }}</td>
             </tr>
             <tr>
                 <td>Kepada</td>
@@ -142,7 +140,7 @@
                 </td>
                 <td></td>
                 <td>
-                    Agung <br>
+                    {{ $data->user }} <br>
                     <strong>Staff TI</strong>
                 </td>
             </tr>

@@ -11,7 +11,7 @@ class CbsController extends Controller
 {
     public function add()
     {
-        $data = UpdateCbs::all();
+        $data = UpdateCbs::orderBy('created_at', 'DESC')->paginate(10);
 
         return view('pages.cbsupdate.add', ['data' => $data]);
     }
@@ -36,6 +36,13 @@ class CbsController extends Controller
         $pdf = Pdf::loadview('pdf.laporanupdate', ['data'=> $data]);
 
         return $pdf->download('laporan-update-cbs');
+    }
+
+    public function rekap()
+    {
+        $data = UpdateCbs::all();
+
+
     }
 
     

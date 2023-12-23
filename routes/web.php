@@ -56,10 +56,7 @@ Route::prefix('cbs')
     route::get('/add',[CbsController::class, 'add'])->name('updatecbs.index');
     route::post('/add',[CbsController::class, 'post'])->name('updatecbs.post');
     route::get('/pdf/{id}', [CbsController::class, 'cetak'])->name('updatecbs.cetak');
-
-    route::get('/cekpdf', function(){
-        $data = UpdateCbs::all();
-        return view('pdf.laporanupdate', ['data' => $data]);
-    });
+    Route::get('/rekap', [CbsController::class, 'rekap'])->name('updatecbs.rekap');
+    
 
 });
