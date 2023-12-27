@@ -29,7 +29,7 @@
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-piggy-bank"></i>
               <p>
-                Denda CBS
+                Reset Password CBS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -37,13 +37,13 @@
               <li class="nav-item">
                 <a href="{{ route('denda.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Tambah Denda</p>
+                  <p>Tambah Reset</p>
                 </a>
               </li>
               <li class="nav-item">
                 <a href="{{ route('rekap.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Rekap Denda</p>
+                  <p>Rekap Reset</p>
                 </a>
               </li>          
             </ul>

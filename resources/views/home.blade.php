@@ -10,7 +10,7 @@
           <div class="small-box bg-info">
             <div class="inner">
               <h3>{{ $pending }} Orang</h3>
-              <p>Pending Denda</p>
+              <p>Pending Pembayaran Denda</p>
             </div>
             <div class="icon">
               <i class="ion ion-alert"></i>
@@ -25,7 +25,7 @@
             <div class="inner">
               <h3>{{ $done }} Orang</h3>
 
-              <p>Lunas Denda</p>
+              <p>Lunas Pembayaran Denda</p>
             </div>
             <div class="icon">
               <i class="ion ion-android-checkmark-circle"></i>
@@ -39,7 +39,7 @@
           <div class="small-box bg-danger">
             <div class="inner">
               <h3>{{ $all }} Orang</h3>
-              <p>Rekap Denda</p>
+              <p>All Reset Password</p>
             </div>
             <div class="icon">
               <i class="ion ion-person-add"></i>
