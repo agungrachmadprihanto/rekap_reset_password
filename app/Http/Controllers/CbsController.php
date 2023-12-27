@@ -27,6 +27,22 @@ class CbsController extends Controller
         return redirect()->route('updatecbs.index');
     }
 
+    public function edit(Request $request, $id)
+    {
+        $data = UpdateCbs::findOrFail($id);
+
+        return view('pages.cbsupdate.edit', ['data' => $data]);            
+    }
+
+    public function update(Request $request, $id)
+    {
+        $data = $request->all();
+
+        UpdateCbs::findOrFail($id)->update($data);
+
+        return redirect()->route('updatecbs.index');
+    }
+
     public function cetak($id)
     {
         $data = UpdateCbs::findOrFail($id);
@@ -38,13 +54,11 @@ class CbsController extends Controller
         return $pdf->download('laporan-update-cbs');
     }
 
-    public function rekap()
+    public function delete($id)
     {
-        $data = UpdateCbs::all();
+        UpdateCbs::findOrFail($id)->delete();
 
-
+        return redirect()->route('updatecbs.index');
     }
-
-    
 
 }

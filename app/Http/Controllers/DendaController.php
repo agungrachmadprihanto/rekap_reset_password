@@ -35,8 +35,7 @@ class DendaController extends Controller
     }
 
     public function update(DendaRequest $request, $id)
-    {
-        
+    {        
         $data = $request->all();
     
         Denda::findOrFail($id)->update($data);

@@ -24,27 +24,36 @@
               </p>
             </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('denda.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-user-tie"></i>
-              <p>
-                Add Denda CBS
-              </p>
-            </a>
-          </li>
-          <li class="nav-item">
-            <a href="{{ route('rekap.index') }}" class="nav-link">
-              <i class="nav-icon fas fa-tasks"></i>
-              <p>
-                Rekap Denda           
-              </p>
-            </a>
-          </li>
+
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-copy"></i>
+              <i class="nav-icon fas fa-piggy-bank"></i>
               <p>
-                Update CBS
+                Denda CBS
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('denda.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Tambah Denda</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('rekap.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Rekap Denda</p>
+                </a>
+              </li>          
+            </ul>
+          </li>
+          
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-server"></i>
+              <p>
+                Program CBS
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -56,13 +65,13 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/top-nav-sidebar.html" class="nav-link">
+                <a href="{{ route('rekapcbs.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Rekap All Update</p>
                 </a>
               </li>
               <li class="nav-item">
-                <a href="pages/layout/boxed.html" class="nav-link">
+                <a href="{{ route('rekapcbs.download') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Download Rekap</p>
                 </a>

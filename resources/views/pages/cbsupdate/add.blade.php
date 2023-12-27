@@ -113,14 +113,8 @@
                     <td>{{ $item->hasil }}</td>
                     <td>{{ $item->user }}</td>
                     <td>
-                      <a href="{{ route('updatecbs.cetak', ['id' => $item->id]) }}" class="btn btn-outline-primary"><i class="fas fa-print"></i></a>
-                      {{-- <form action="{{ route('denda.delete', ['id' => $item->id]) }}" method="POST" class="d-inline">
-                        @csrf
-                        @method('delete')
-                        <button type="submit" class="btn btn-outline-danger">
-                          <i class="fas fa-trash-alt"></i>
-                        </button>                      
-                      </form> --}}
+                      <a href="{{ route('updatecbs.cetak', ['id' => $item->id]) }}" class="btn btn-outline-primary mb-2"><i class="fas fa-print"></i></a>
+                      <a href="{{ route('updatecbs.edit', ['id' => $item->id]) }}" class="btn btn-outline-danger mb-2"><i class="fas fa-pen"></i></a>
                     </td>
                   </tr>
                 </tbody>
